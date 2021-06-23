@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter as Router } from "react-router-dom";
-import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/semantic.min.css";
 
 ReactDOM.render(
-    <Router>
-      <App />
-    </Router>,
+  <Router>
+    <App />
+  </Router>,
   document.getElementById("root")
 );
 

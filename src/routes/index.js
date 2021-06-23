@@ -1,10 +1,12 @@
 import { Switch } from "react-router-dom";
-import LoginRoute from "./login.route"
+import LoginRoute from "./login.route";
 
 const RenderRoutes = () => {
-  return <Switch>
-    <LoginRoute />
-  </Switch>
-}
+  return (
+    <Switch>
+      <LoginRoute />
+    </Switch>
+  );
+};
 
-export default RenderRoutes
+export default RenderRoutes;

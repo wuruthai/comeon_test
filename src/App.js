@@ -1,11 +1,9 @@
-import React from 'react';
-import RenderRoutes from 'routes';
-import 'styles/app.css'
+import React from "react";
+import RenderRoutes from "routes";
+import "styles/app.css";
 
 function App() {
-  return (
-    <RenderRoutes />
-  );
+  return <RenderRoutes />;
 }
 
 export default App;
