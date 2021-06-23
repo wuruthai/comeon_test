@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { STORAGE } from "constants/index";
 import { service, Storage } from "utils";
 
@@ -9,9 +9,10 @@ export const PlayerProvider = ({ children }) => {
   const [player, setPlayer] = useState(persistedPlayer);
 
   const login = useCallback((payload) => {
-    service
-      .post("/login", payload)
-      .then((response) => setPlayer(response.data.player));
+    return service.post("/login", payload).then((response) => {
+      setPlayer(response.data.player);
+      return response.data.player;
+    });
   }, []);
 
   useEffect(() => {

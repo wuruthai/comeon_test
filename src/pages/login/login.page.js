@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Button, Message, Icon, Grid, Form, Input } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { loginSchema as validationSchema } from "schemas";
@@ -6,13 +6,19 @@ import { usePlayer } from "context/player.context";
 
 const LoginPage = () => {
   const { login } = usePlayer();
+  const [showRegisteredUserWarning, setShowRegisteredUserWarning] =
+    useState(false);
 
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
-    onSubmit: login,
+    onSubmit: (values) => {
+      login(values).catch((res) => {
+        setShowRegisteredUserWarning(true);
+      });
+    },
     validationSchema,
     validateOnBlur: true,
     validateOnChange: false,
@@ -24,8 +30,8 @@ const LoginPage = () => {
   );
 
   const onChangeInput = (event, el) => {
+    setShowRegisteredUserWarning(false);
     formik.setErrors({});
-
     formik.handleChange(event, el);
   };
 
@@ -33,7 +39,11 @@ const LoginPage = () => {
     <div className="main container">
       <div className="login">
         <Grid centered>
-          <Form onSubmit={formik.handleSubmit} error={hasError}>
+          <Form
+            onSubmit={formik.handleSubmit}
+            error={hasError}
+            warning={showRegisteredUserWarning}
+          >
             <Form.Field
               control={Input}
               name="username"
@@ -65,6 +75,7 @@ const LoginPage = () => {
               Login
               <Icon name="right chevron" />
             </Form.Field>
+            <Message warning>No registered players found</Message>
           </Form>
         </Grid>
       </div>
