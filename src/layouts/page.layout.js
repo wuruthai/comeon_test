@@ -10,7 +10,7 @@ const PageLayout = ({ children }) => {
           <Logo />
         </Grid.Column>
       </Grid>
-      {children}
+      <div className="main container">{children}</div>
     </>
   );
 };

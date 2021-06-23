@@ -36,49 +36,47 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="main container">
-      <div className="login">
-        <Grid centered>
-          <Form
-            onSubmit={formik.handleSubmit}
-            error={hasError}
-            warning={showRegisteredUserWarning}
-          >
-            <Form.Field
-              control={Input}
-              name="username"
-              placeholder="Username"
-              icon="user"
-              value={formik.values.username}
-              onChange={onChangeInput}
-            />
-            <Form.Field>
-              {formik.errors.username && (
-                <Message error size="mini" content={formik.errors.username} />
-              )}
-            </Form.Field>
-            <Form.Field
-              control={Input}
-              name="password"
-              type="password"
-              placeholder="Password"
-              icon="lock"
-              value={formik.values.password}
-              onChange={onChangeInput}
-            />
-            <Form.Field>
-              {formik.errors.password && (
-                <Message error size="mini" content={formik.errors.password} />
-              )}
-            </Form.Field>
-            <Form.Field control={Button} basic type="submit">
-              Login
-              <Icon name="right chevron" />
-            </Form.Field>
-            <Message warning>No registered players found</Message>
-          </Form>
-        </Grid>
-      </div>
+    <div className="login">
+      <Grid centered>
+        <Form
+          onSubmit={formik.handleSubmit}
+          error={hasError}
+          warning={showRegisteredUserWarning}
+        >
+          <Form.Field
+            control={Input}
+            name="username"
+            placeholder="Username"
+            icon="user"
+            value={formik.values.username}
+            onChange={onChangeInput}
+          />
+          <Form.Field>
+            {formik.errors.username && (
+              <Message error size="mini" content={formik.errors.username} />
+            )}
+          </Form.Field>
+          <Form.Field
+            control={Input}
+            name="password"
+            type="password"
+            placeholder="Password"
+            icon="lock"
+            value={formik.values.password}
+            onChange={onChangeInput}
+          />
+          <Form.Field>
+            {formik.errors.password && (
+              <Message error size="mini" content={formik.errors.password} />
+            )}
+          </Form.Field>
+          <Form.Field control={Button} basic type="submit">
+            Login
+            <Icon name="right chevron" />
+          </Form.Field>
+          <Message warning>No registered players found</Message>
+        </Form>
+      </Grid>
     </div>
   );
 };

@@ -1,11 +1,12 @@
-import { Switch } from "react-router-dom";
 import LoginRoute from "./login.route";
+import GamesRoute from "./games.route";
 
 const RenderRoutes = () => {
   return (
-    <Switch>
+    <>
       <LoginRoute />
-    </Switch>
+      <GamesRoute />
+    </>
   );
 };
 
