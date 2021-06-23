@@ -1,14 +1,8 @@
 import React from 'react'
 import { Button, Input, Icon, Grid, Form } from 'semantic-ui-react'
 
-import { Logo } from 'components'
-
 const LoginPage = () => {
   return (
-    <>
-    <Grid centered >
-      <Grid.Column width={9}><Logo /></Grid.Column>
-    </Grid>
       <div className="main container">
         <div className="login" >
           <Grid centered>
@@ -29,7 +23,6 @@ const LoginPage = () => {
           </Grid>
         </div>
       </div>
-    </>
   )
 }
 
