@@ -3,8 +3,9 @@ import { Button, Message, Icon, Grid, Form, Input } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { loginSchema as validationSchema } from "schemas";
 import { usePlayer } from "context/player.context";
+
 const LoginPage = () => {
-  const { player, login } = usePlayer();
+  const { login } = usePlayer();
 
   const formik = useFormik({
     initialValues: {
@@ -22,6 +23,12 @@ const LoginPage = () => {
     [formik.errors]
   );
 
+  const onChangeInput = (event, el) => {
+    formik.setErrors({});
+
+    formik.handleChange(event, el);
+  };
+
   return (
     <div className="main container">
       <div className="login">
@@ -33,7 +40,7 @@ const LoginPage = () => {
               placeholder="Username"
               icon="user"
               value={formik.values.username}
-              onChange={formik.handleChange}
+              onChange={onChangeInput}
             />
             <Form.Field>
               {formik.errors.username && (
@@ -47,7 +54,7 @@ const LoginPage = () => {
               placeholder="Password"
               icon="lock"
               value={formik.values.password}
-              onChange={formik.handleChange}
+              onChange={onChangeInput}
             />
             <Form.Field>
               {formik.errors.password && (
