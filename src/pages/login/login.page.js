@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { Button, Message, Icon, Grid, Form, Input } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { loginSchema as validationSchema } from "schemas";
+import { service } from "utils";
 
 const LoginPage = () => {
   const formik = useFormik({
@@ -10,7 +11,7 @@ const LoginPage = () => {
       password: "",
     },
     onSubmit: (values) => {
-      console.log("formik", formik);
+      service.post("/login", values).then((data) => console.log(data));
     },
     validationSchema,
     validateOnBlur: true,

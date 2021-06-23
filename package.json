@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
     "formik": "^2.2.9",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
@@ -24,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'    "
+    "lint": "./node_modules/.bin/prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "server": "yarn json-server --watch mock/mock-data.json --port 3001 --middlewares mock/mock-api.js"
   },
   "eslintConfig": {
     "extends": [
@@ -53,5 +55,8 @@
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"
     ]
+  },
+  "devDependencies": {
+    "json-server": "^0.16.3"
   }
 }
