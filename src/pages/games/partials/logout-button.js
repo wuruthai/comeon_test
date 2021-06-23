@@ -6,11 +6,17 @@ import { ROUTE_PATHS } from "constants/index";
 
 const LogoutButton = () => {
   const { logout, logoutLoading } = usePlayer();
-const history = useHistory()
+  const history = useHistory();
   return (
-    <Button className="logout" secondary floated="left" onClick={() => {
-      logout().then(() => history.push(ROUTE_PATHS.LOGIN));
-    }} loading={logoutLoading}>
+    <Button
+      className="logout"
+      secondary
+      floated="left"
+      onClick={() => {
+        logout().then(() => history.push(ROUTE_PATHS.LOGIN));
+      }}
+      loading={logoutLoading}
+    >
       <Icon name="left chevron" />
       Log Out
     </Button>

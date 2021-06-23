@@ -31,7 +31,7 @@ const useFetch = ({
         })
         .catch((err) => {
           setLoading(false);
-          throw err
+          throw err;
         });
     },
     [url, payload, method, modelData]

@@ -31,7 +31,9 @@ export const PlayerProvider = ({ children }) => {
   }, [player]);
 
   const logout = useCallback(() => {
-    return logoutRequest({ username: player.name }).then(() => setPlayer(null));
+    return logoutRequest({
+      username: player.name.split(" ")[0].toLowerCase(),
+    }).then(() => setPlayer(null));
   }, [setPlayer, player, logoutRequest]);
 
   return (

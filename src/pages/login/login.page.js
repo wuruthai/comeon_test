@@ -10,7 +10,7 @@ const LoginPage = () => {
   const { login, loginLoading } = usePlayer();
   let history = useHistory();
 
-const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState("");
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -20,7 +20,8 @@ const [errorMessage, setErrorMessage] = useState('')
       login(values)
         .then(() => history.push(ROUTE_PATHS.GAMES))
         .catch((error) => {
-          setErrorMessage(error.response.data.error);
+
+          setErrorMessage(error?.response?.data?.error);
         });
     },
     validationSchema,
@@ -34,7 +35,7 @@ const [errorMessage, setErrorMessage] = useState('')
   );
 
   const onChangeInput = (event, el) => {
-    setErrorMessage('');
+    setErrorMessage("");
     formik.setErrors({});
     formik.handleChange(event, el);
   };
