@@ -3,21 +3,25 @@ import { Button, Message, Icon, Grid, Form, Input } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { loginSchema as validationSchema } from "schemas";
 import { usePlayer } from "context/player.context";
+import { useHistory } from "react-router-dom";
+import { ROUTE_PATHS } from "constants/index";
 
 const LoginPage = () => {
-  const { login } = usePlayer();
-  const [showRegisteredUserWarning, setShowRegisteredUserWarning] =
-    useState(false);
+  const { login, loginLoading } = usePlayer();
+  let history = useHistory();
 
+const [errorMessage, setErrorMessage] = useState('')
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
     onSubmit: (values) => {
-      login(values).catch((res) => {
-        setShowRegisteredUserWarning(true);
-      });
+      login(values)
+        .then(() => history.push(ROUTE_PATHS.GAMES))
+        .catch((error) => {
+          setErrorMessage(error.response.data.error);
+        });
     },
     validationSchema,
     validateOnBlur: true,
@@ -30,7 +34,7 @@ const LoginPage = () => {
   );
 
   const onChangeInput = (event, el) => {
-    setShowRegisteredUserWarning(false);
+    setErrorMessage('');
     formik.setErrors({});
     formik.handleChange(event, el);
   };
@@ -41,7 +45,8 @@ const LoginPage = () => {
         <Form
           onSubmit={formik.handleSubmit}
           error={hasError}
-          warning={showRegisteredUserWarning}
+          warning={!!errorMessage}
+          loading={loginLoading}
         >
           <Form.Field
             control={Input}
@@ -74,7 +79,7 @@ const LoginPage = () => {
             Login
             <Icon name="right chevron" />
           </Form.Field>
-          <Message warning>No registered players found</Message>
+          <Message warning>{errorMessage}</Message>
         </Form>
       </Grid>
     </div>

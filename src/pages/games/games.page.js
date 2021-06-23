@@ -14,6 +14,7 @@ import {
 } from "semantic-ui-react";
 
 import Avatar from "./partials/avatar";
+import LogoutButton from "./partials/logout-button";
 
 const GamesPage = () => {
   const { player } = usePlayer();
@@ -28,12 +29,8 @@ const GamesPage = () => {
     <div className="casino">
       <Grid centered>
         <Grid.Column width={12}>
-          <Avatar player={player} />
-
-          <Button className="logout" secondary floated="left">
-            <Icon name="left chevron" />
-            Log Out
-          </Button>
+          {player && <Avatar player={player} />}
+          <LogoutButton />
         </Grid.Column>
         <Grid.Column width={4}>
           <Input icon="search" placeholder="Search..." />
@@ -64,7 +61,6 @@ const GamesPage = () => {
         <Grid.Column width={4}>
           <Header as="h3">Categories</Header>
           <Divider />
-
           <List className="category" animated selection>
             {categories.map((category) => (
               <List.Item key={category.name}>

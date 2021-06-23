@@ -1,19 +1,22 @@
-import React, { useState, useCallback } from "react";
-import { service } from "utils";
+import React from "react";
+import { useFetch } from "hooks";
 
 const CategoriesContext = React.createContext();
 export const CategoriesProvider = ({ children }) => {
-  const [categories, setCategories] = useState([]);
-
-  const getCategories = useCallback(() => {
-    service.get("/categories").then((result) => {
-      setCategories(result.data);
-      return result.data;
-    });
-  }, []);
+  const {
+    categoriesRequest: getCategories,
+    categoriesData: categories,
+    categoriesLoading,
+  } = useFetch({
+    url: "/categories",
+    prefix: "categories",
+    defaultData: [],
+  });
 
   return (
-    <CategoriesContext.Provider value={{ categories, getCategories }}>
+    <CategoriesContext.Provider
+      value={{ categories, getCategories, categoriesLoading }}
+    >
       {children}
     </CategoriesContext.Provider>
   );
