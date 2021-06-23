@@ -4,10 +4,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter as Router } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-
+import StoreProvider from "context";
 ReactDOM.render(
   <Router>
-    <App />
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   </Router>,
   document.getElementById("root")
 );
