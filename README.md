@@ -1,3 +1,16 @@
+# Comeon Challenge
+- I used semantic-ui-react library.
+- I add json-server via yarn, and no need any directory from out.
+- I tried to use modern react technique.
+- I used context api for store.
+- I added some example unit tests for hooks, context and utils functions.
+- I added react-lazy-images for rendering images laziness.
+
+After you install packages with `yarn`,
+For try the project you should run `yarn server` in terminal and another one you should run `yarn start`
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
