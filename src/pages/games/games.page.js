@@ -55,7 +55,7 @@ const GamesPage = () => {
         <Grid.Column width={12}>
           <Header as="h3">Games</Header>
           <Divider />
-          <GameList gameList={filteredGameList} isLoading={gameListLoading}/>
+          <GameList gameList={filteredGameList} isLoading={gameListLoading} />
         </Grid.Column>
         <Grid.Column width={4}>
           <Header as="h3">Categories</Header>

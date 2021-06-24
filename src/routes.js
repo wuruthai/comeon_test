@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { usePlayer } from "context/player.context";
 import { ROUTE_PATHS } from "constants/index";
 import { LoginPage, GamesPage, GamePage } from "pages";
+import { EmptyPage } from "components";
 
 const LoginRedirect = (routeProps) => {
   const { player } = usePlayer();
@@ -26,7 +27,7 @@ const RenderRoutes = () => {
           path={ROUTE_PATHS.GAME + "/:code"}
           component={GamePage}
         />
-        <Route>Page Not Found</Route>
+        <Route component={EmptyPage} />
       </Switch>
     </PageLayout>
   );
