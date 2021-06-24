@@ -4,8 +4,16 @@ import { usePlayer } from "context/player.context";
 import { ROUTE_PATHS } from "constants/index";
 import { LoginPage, GamesPage } from "pages";
 
-const RenderRoutes = () => {
+const LoginRedirect = (routeProps) => {
   const { player } = usePlayer();
+
+  return (
+  <Route {...routeProps}>
+    {player ? <routeProps.component /> : <Redirect to={ROUTE_PATHS.LOGIN} />}
+  </Route>
+)};
+
+const RenderRoutes = () => {
   return (
     <PageLayout>
       <Switch>
@@ -13,9 +21,7 @@ const RenderRoutes = () => {
           <Redirect to={ROUTE_PATHS.LOGIN} />
         </Route>
         <Route exact path={ROUTE_PATHS.LOGIN} component={LoginPage} />
-        <Route exact path={ROUTE_PATHS.GAMES}>
-          {player ? <GamesPage /> : <Redirect to={ROUTE_PATHS.LOGIN} />}
-        </Route>
+        <LoginRedirect exact path={ROUTE_PATHS.GAMES} component={GamesPage}/>
         <Route>Page Not Found</Route>
       </Switch>
     </PageLayout>
