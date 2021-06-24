@@ -1,5 +1,5 @@
 import React from "react";
-import { Image as SemanticImage, Loader, Ref } from "semantic-ui-react";
+import { Image as SemanticImage } from "semantic-ui-react";
 import { LazyImage } from "react-lazy-images";
 import ImagePlaceholder from "./image-placeholder";
 
