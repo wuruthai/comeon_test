@@ -1,29 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useGameList } from "context/game-list.context";
 import { usePlayer } from "context/player.context";
 import { useCategories } from "context/categories.context";
-import {
-  Grid,
-  Button,
-  Icon,
-  Input,
-  Header,
-  Divider,
-  List,
-  Image,
-} from "semantic-ui-react";
+import { Grid, Input, Header, Divider } from "semantic-ui-react";
 
 import Avatar from "./partials/avatar";
 import LogoutButton from "./partials/logout-button";
+import GameList from "./partials/game-list";
+import CategoriesList from "./partials/categories-list";
+import { useSearch } from "hooks";
 
 const GamesPage = () => {
   const { player } = usePlayer();
   const { gameList, getGameList } = useGameList();
   const { categories, getCategories } = useCategories();
+
   useEffect(() => {
     getGameList();
     getCategories();
   }, []);
+
+  const {
+    search,
+    setSearch,
+    searchedList: searchedGameList,
+  } = useSearch(gameList, (item) => item.name);
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+
+  const filteredGameList = useMemo(() => {
+    return searchedGameList.filter((game) =>
+      game.categoryIds.some((categoryId) => categoryId === selectedCategoryId)
+    );
+  }, [searchedGameList, selectedCategoryId]);
 
   return (
     <div className="casino">
@@ -33,43 +42,28 @@ const GamesPage = () => {
           <LogoutButton />
         </Grid.Column>
         <Grid.Column width={4}>
-          <Input icon="search" placeholder="Search..." />
+          <Input
+            icon="search"
+            placeholder="Search..."
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
         </Grid.Column>
       </Grid>
       <Grid>
         <Grid.Column width={12}>
           <Header as="h3">Games</Header>
           <Divider />
-          <div className="ui relaxed divided game items links">
-            {gameList.map((item) => (
-              <List.Item className="game" key={item.name}>
-                <Image src={item.icon} size="small" />
-                <List.Content>
-                  <List.Header>{item.name}</List.Header>
-                  <List.Description>{item.description}</List.Description>
-                  <div className="extra">
-                    <Button className="logout" secondary floated="right">
-                      Play
-                      <Icon name="right chevron" />
-                    </Button>
-                  </div>
-                </List.Content>
-              </List.Item>
-            ))}
-          </div>
+          <GameList gameList={filteredGameList} />
         </Grid.Column>
         <Grid.Column width={4}>
           <Header as="h3">Categories</Header>
           <Divider />
-          <List className="category" animated selection>
-            {categories.map((category) => (
-              <List.Item key={category.name}>
-                <List.Content>
-                  <List.Header>{category.name}</List.Header>
-                </List.Content>
-              </List.Item>
-            ))}
-          </List>
+          <CategoriesList
+            categories={categories}
+            selectedCategoryId={selectedCategoryId}
+            onChangeSelectedCategoryId={setSelectedCategoryId}
+          />
         </Grid.Column>
       </Grid>
     </div>
