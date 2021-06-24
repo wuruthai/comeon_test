@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Icon, List, Image, Loader } from "semantic-ui-react";
+import { Button, Icon, List, Loader } from "semantic-ui-react";
 import { ROUTE_PATHS } from "constants/index";
+import { Image } from "components";
 
 const GameList = ({ gameList, isLoading }) => {
   const history = useHistory();

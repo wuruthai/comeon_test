@@ -1,5 +1,6 @@
 import React from "react";
-import { List, Image } from "semantic-ui-react";
+import { List } from "semantic-ui-react";
+import { Image } from "components";
 
 const Avatar = ({ player }) => {
   return (

@@ -42,6 +42,7 @@ const GamePage = () => {
           <Header as="h3">{gameData?.name}</Header>
           <Divider />
           <Loader active={gameListLoading} inline="centered" />
+          {!gameListLoading && !gameData && <div>Game not found!</div>}
           <div id="game-launch"></div>
         </Grid.Column>
       </Grid>

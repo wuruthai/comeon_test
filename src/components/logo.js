@@ -1,5 +1,7 @@
-const Logo = () => (
-  <svg viewBox="0 0 176 33" xmlns="http://www.w3.org/2000/svg">
+import React from "react";
+
+const Logo = React.forwardRef((props, ref) => (
+  <svg viewBox="0 0 176 33" xmlns="http://www.w3.org/2000/svg" ref={ref}>
     <g fill="none" fillRule="evenodd">
       <path
         fill="#8EB50D"
@@ -12,6 +14,6 @@ const Logo = () => (
       <path d="M0 0h176v33H0z" />
     </g>
   </svg>
-);
+));
 
 export default Logo;
