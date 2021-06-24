@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useGameList } from "context/game-list.context";
 import { usePlayer } from "context/player.context";
 import { useCategories } from "context/categories.context";
-import { Grid, Input, Header, Divider } from "semantic-ui-react";
+import { Grid, Input, Header, Divider, Loader } from "semantic-ui-react";
 
 import { Avatar, LogoutButton } from "components";
 
@@ -13,8 +13,8 @@ import "lib/comeon.game-1.0.min";
 
 const GamesPage = () => {
   const { player } = usePlayer();
-  const { gameList, getGameList } = useGameList();
-  const { categories, getCategories } = useCategories();
+  const { gameList, getGameList, gameListLoading } = useGameList();
+  const { categories, getCategories, categoriesLoading } = useCategories();
 
   useEffect(() => {
     getGameList();
@@ -55,7 +55,7 @@ const GamesPage = () => {
         <Grid.Column width={12}>
           <Header as="h3">Games</Header>
           <Divider />
-          <GameList gameList={filteredGameList} />
+          <GameList gameList={filteredGameList} isLoading={gameListLoading}/>
         </Grid.Column>
         <Grid.Column width={4}>
           <Header as="h3">Categories</Header>
@@ -64,6 +64,7 @@ const GamesPage = () => {
             categories={categories}
             selectedCategoryId={selectedCategoryId}
             onChangeSelectedCategoryId={setSelectedCategoryId}
+            isLoading={categoriesLoading}
           />
         </Grid.Column>
       </Grid>
