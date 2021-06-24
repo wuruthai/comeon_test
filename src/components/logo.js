@@ -1,7 +1,12 @@
 import React from "react";
 
 const Logo = React.forwardRef((props, ref) => (
-  <svg viewBox="0 0 176 33" xmlns="http://www.w3.org/2000/svg" ref={ref}>
+  <svg
+    id="comeon-logo"
+    viewBox="0 0 176 33"
+    xmlns="http://www.w3.org/2000/svg"
+    ref={ref}
+  >
     <g fill="none" fillRule="evenodd">
       <path
         fill="#8EB50D"

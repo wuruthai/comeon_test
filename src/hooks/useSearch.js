@@ -7,7 +7,7 @@ const useSearch = (list, expression = (item) => item) => {
     return list.filter((item) => {
       const value = expression(item);
       return typeof value === "string"
-        ? value.toLowerCase().includes(search)
+        ? value.toLowerCase().includes(search.toLowerCase())
         : value === search;
     });
   }, [list, expression, search]);
