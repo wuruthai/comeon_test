@@ -20,7 +20,6 @@ const LoginPage = () => {
       login(values)
         .then(() => history.push(ROUTE_PATHS.GAMES))
         .catch((error) => {
-
           setErrorMessage(error?.response?.data?.error);
         });
     },

@@ -8,10 +8,11 @@ const LoginRedirect = (routeProps) => {
   const { player } = usePlayer();
 
   return (
-  <Route {...routeProps}>
-    {player ? <routeProps.component /> : <Redirect to={ROUTE_PATHS.LOGIN} />}
-  </Route>
-)};
+    <Route {...routeProps}>
+      {player ? <routeProps.component /> : <Redirect to={ROUTE_PATHS.LOGIN} />}
+    </Route>
+  );
+};
 
 const RenderRoutes = () => {
   return (
@@ -21,7 +22,7 @@ const RenderRoutes = () => {
           <Redirect to={ROUTE_PATHS.LOGIN} />
         </Route>
         <Route exact path={ROUTE_PATHS.LOGIN} component={LoginPage} />
-        <LoginRedirect exact path={ROUTE_PATHS.GAMES} component={GamesPage}/>
+        <LoginRedirect exact path={ROUTE_PATHS.GAMES} component={GamesPage} />
         <Route>Page Not Found</Route>
       </Switch>
     </PageLayout>
