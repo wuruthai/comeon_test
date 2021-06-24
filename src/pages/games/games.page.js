@@ -4,11 +4,12 @@ import { usePlayer } from "context/player.context";
 import { useCategories } from "context/categories.context";
 import { Grid, Input, Header, Divider } from "semantic-ui-react";
 
-import Avatar from "./partials/avatar";
-import LogoutButton from "./partials/logout-button";
+import { Avatar, LogoutButton } from "components";
+
 import GameList from "./partials/game-list";
 import CategoriesList from "./partials/categories-list";
 import { useSearch } from "hooks";
+import "lib/comeon.game-1.0.min";
 
 const GamesPage = () => {
   const { player } = usePlayer();
