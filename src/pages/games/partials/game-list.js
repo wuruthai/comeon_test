@@ -1,7 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Icon, List, Image } from "semantic-ui-react";
+import { ROUTE_PATHS } from "constants/index";
 
 const GameList = ({ gameList }) => {
+  const history = useHistory();
+  const onPlay = (code) => history.push(`${ROUTE_PATHS.GAME}/${code}`);
+
   return (
     <div className="ui relaxed divided game items links">
       {gameList.map((item) => (
@@ -11,7 +16,12 @@ const GameList = ({ gameList }) => {
             <List.Header>{item.name}</List.Header>
             <List.Description>{item.description}</List.Description>
             <div className="extra">
-              <Button className="logout" secondary floated="right">
+              <Button
+                className="logout"
+                secondary
+                floated="right"
+                onClick={() => onPlay(item.code)}
+              >
                 Play
                 <Icon name="right chevron" />
               </Button>
